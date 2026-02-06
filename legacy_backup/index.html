@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HubGame - La Plateforme de Jeux</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body
+    class="text-white flex flex-col items-center justify-center p-4 min-h-screen selection:bg-pink-500 selection:text-white overflow-hidden font-sans">
+
+    <!-- Background Mesh Gradient -->
+    <div class="fixed inset-0 z-[-1] mesh-gradient"></div>
+
+    <!-- Navbar (Global) -->
+    <nav id="global-nav"
+        class="fixed top-0 left-0 w-full p-6 z-50 flex justify-between items-center animate__animated animate__fadeInDown">
+        <button id="btn-back" onclick="app.goBack()"
+            class="hidden px-5 py-2.5 rounded-2xl glass-strong flex items-center space-x-2 text-sm font-bold hover:bg-white/20 transition-all transform hover:-translate-y-0.5 active:scale-95 group cursor-pointer">
+            <span class="group-hover:-translate-x-1 transition-transform">←</span>
+            <span>Retour</span>
+        </button>
+
+        <div class="flex items-center space-x-4">
+            <!-- Theme Toggle -->
+            <button id="theme-toggle"
+                class="w-10 h-10 rounded-full glass flex items-center justify-center hover:scale-110 active:scale-95 transition-all text-yellow-400">
+                <svg id="icon-sun" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z">
+                    </path>
+                </svg>
+                <svg id="icon-moon" class="w-5 h-5 text-indigo-300" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z">
+                    </path>
+                </svg>
+            </button>
+            <div class="glass px-4 py-2 rounded-full text-xs font-bold tracking-[0.2em] opacity-80 shadow-lg">HUBGAME
+            </div>
+        </div>
+    </nav>
+
+    <!-- VIEW: HUB (Home) -->
+    <div id="view-hub" class="w-full max-w-5xl flex flex-col items-center animate__animated animate__fadeIn">
+        <div class="mb-12 text-center">
+            <h1 class="text-6xl md:text-8xl font-black mb-4 tracking-tighter drop-shadow-2xl">
+                <span class="bg-clip-text text-transparent bg-gradient-to-r from-white to-white/60">Hub</span><span
+                    class="bg-clip-text text-transparent bg-gradient-to-r from-pink-400 to-purple-400">Game</span>
+            </h1>
+            <p class="text-white/60 text-lg md:text-xl font-medium tracking-wide">L'excellence ludique</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full px-4 md:px-12">
+
+            <!-- Folder: Geography -->
+            <div class="group relative cursor-pointer" onclick="app.showCategory('geo')">
+                <div
+                    class="absolute -inset-1 bg-gradient-to-r from-emerald-500 to-cyan-500 rounded-[2rem] blur opacity-25 group-hover:opacity-75 transition duration-1000 group-hover:duration-200">
+                </div>
+                <div
+                    class="relative h-full glass-card p-8 rounded-[1.8rem] flex flex-col items-center text-center transition-all duration-300 group-hover:-translate-y-2">
+                    <div
+                        class="w-20 h-20 mb-6 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-cyan-500/20 flex items-center justify-center text-4xl shadow-inner border border-white/10 group-hover:scale-110 transition-transform duration-500">
+                        🌍
+                    </div>
+                    <h2 class="text-3xl font-bold mb-2 text-white">Géographie</h2>
+                    <p class="text-sm text-gray-400 font-medium">Explorez le monde</p>
+                    <div
+                        class="mt-8 flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-emerald-400">
+                        <span>2 Jeux</span>
+                        <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Folder: Strategy -->
+            <div
+                class="group relative cursor-pointer opacity-70 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-300">
+                <div
+                    class="absolute -inset-0.5 bg-gradient-to-r from-purple-500 to-pink-500 rounded-[2rem] blur opacity-0 group-hover:opacity-50 transition duration-1000">
+                </div>
+                <div
+                    class="relative h-full glass-card p-8 rounded-[1.8rem] flex flex-col items-center text-center transition-all duration-300 group-hover:-translate-y-2">
+                    <div
+                        class="absolute top-6 right-6 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold text-gray-400 uppercase tracking-wider">
+                        Bientôt</div>
+                    <div
+                        class="w-20 h-20 mb-6 rounded-2xl bg-gradient-to-br from-purple-500/20 to-pink-500/20 flex items-center justify-center text-4xl shadow-inner border border-white/10 opacity-70">
+                        ♟️
+                    </div>
+                    <h2 class="text-3xl font-bold mb-2 text-gray-300">Stratégie</h2>
+                    <p class="text-sm text-gray-500 font-medium">Défiez votre esprit</p>
+                    <div
+                        class="mt-8 flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-gray-600">
+                        <span>Indisponible</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- VIEW: CATEGORY - GEOGRAPHY -->
+    <div id="view-category-geo"
+        class="hidden w-full max-w-6xl flex flex-col items-center animate__animated animate__fadeIn">
+        <div class="mb-10 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-2 text-white">Géographie</h2>
+            <p class="text-white/50 text-base font-medium">Choisissez votre mode de jeu</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full px-4">
+
+            <!-- Game: Drapeaux -->
+            <div class="group relative cursor-pointer" onclick="app.launchGame('flags')">
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500">
+                </div>
+                <div
+                    class="relative glass-card p-1 rounded-[2rem] overflow-hidden transition-all duration-300 group-hover:scale-[1.02]">
+                    <div
+                        class="bg-black/20 p-8 rounded-[1.9rem] flex items-center space-x-6 h-full border border-white/5 group-hover:border-white/20">
+                        <div class="text-5xl drop-shadow-lg group-hover:scale-110 transition-transform duration-300">🚩
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-white mb-1 group-hover:text-blue-300 transition-colors">
+                                Drapeaux</h3>
+                            <p class="text-xs text-blue-200/60 leading-relaxed">Devinez le pays à partir de son drapeau
+                                officiel.</p>
+                        </div>
+                        <div
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-blue-500 group-hover:text-white transition-all">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game: Capitales -->
+            <div class="group relative cursor-pointer" onclick="app.launchGame('capitals')">
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-pink-600 to-rose-600 rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500">
+                </div>
+                <div
+                    class="relative glass-card p-1 rounded-[2rem] overflow-hidden transition-all duration-300 group-hover:scale-[1.02]">
+                    <div
+                        class="bg-black/20 p-8 rounded-[1.9rem] flex items-center space-x-6 h-full border border-white/5 group-hover:border-white/20">
+                        <div class="text-5xl drop-shadow-lg group-hover:scale-110 transition-transform duration-300">🏙️
+                        </div>
+                        <div class="flex-1">
+                            <h3 class="text-2xl font-bold text-white mb-1 group-hover:text-pink-300 transition-colors">
+                                Capitales</h3>
+                            <p class="text-xs text-pink-200/60 leading-relaxed">Trouvez la capitale correspondant au
+                                pays.</p>
+                        </div>
+                        <div
+                            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-pink-500 group-hover:text-white transition-all">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- VIEW: DIFFICULTY SELECTION -->
+    <div id="view-difficulty"
+        class="hidden w-full max-w-4xl flex flex-col items-center animate__animated animate__fadeIn">
+        <div class="mb-10 text-center">
+            <h2 class="text-4xl md:text-5xl font-bold mb-2 text-white">Difficulté</h2>
+            <p class="text-white/50 text-base font-medium">Quel défi voulez-vous relever ?</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full px-4">
+            <!-- Mode: Easy -->
+            <div class="group relative cursor-pointer" onclick="app.setDifficulty('easy')">
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-green-500 to-emerald-500 rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500">
+                </div>
+                <div
+                    class="relative glass-card p-8 rounded-[2rem] flex flex-col items-center text-center transition-all duration-300 group-hover:-translate-y-2 group-hover:border-green-400/30">
+                    <div
+                        class="w-16 h-16 mb-4 rounded-full bg-green-500/20 flex items-center justify-center text-3xl text-green-400 border border-green-500/30">
+                        ✨
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Facile</h3>
+                    <p class="text-sm text-gray-400 mb-4">Mode QCM</p>
+                    <ul class="text-xs text-gray-500 space-y-2 text-left w-full pl-4 border-l border-white/10">
+                        <li>• 4 choix de réponses</li>
+                        <li>• Idéal pour débuter</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Mode: Hard -->
+            <div class="group relative cursor-pointer" onclick="app.setDifficulty('hard')">
+                <div
+                    class="absolute inset-0 bg-gradient-to-r from-orange-500 to-red-500 rounded-3xl opacity-0 group-hover:opacity-20 blur-xl transition-opacity duration-500">
+                </div>
+                <div
+                    class="relative glass-card p-8 rounded-[2rem] flex flex-col items-center text-center transition-all duration-300 group-hover:-translate-y-2 group-hover:border-orange-400/30">
+                    <div
+                        class="absolute top-4 right-4 text-[10px] font-bold px-2 py-1 bg-gradient-to-r from-orange-500 to-red-500 rounded text-white shadow-lg">
+                        EXPERT</div>
+                    <div
+                        class="w-16 h-16 mb-4 rounded-full bg-orange-500/20 flex items-center justify-center text-3xl text-orange-400 border border-orange-500/30">
+                        🔥
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">Difficile</h3>
+                    <p class="text-sm text-gray-400 mb-4">Saisie Manuelle</p>
+                    <ul class="text-xs text-gray-500 space-y-2 text-left w-full pl-4 border-l border-white/10">
+                        <li>• Écrivez la réponse</li>
+                        <li>• Orthographe tolérante</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- GAME VIEW WRAPPER -->
+    <div id="view-game-container" class="hidden w-full flex flex-col items-center justify-center min-h-[80vh]">
+
+        <!-- Loading Skeleton -->
+        <div id="game-skeleton" class="hidden w-full max-w-md animate-pulse">
+            <div class="bg-white/5 h-64 rounded-3xl mb-4"></div>
+            <div class="space-y-3">
+                <div class="h-12 bg-white/5 rounded-xl"></div>
+                <div class="h-12 bg-white/5 rounded-xl"></div>
+                <div class="h-12 bg-white/5 rounded-xl"></div>
+                <div class="h-12 bg-white/5 rounded-xl"></div>
+            </div>
+        </div>
+
+        <!-- The actual game UI -->
+        <main id="game-ui"
+            class="glass-card rounded-[2rem] w-full max-w-xl hidden flex flex-col overflow-hidden shadow-2xl">
+
+            <!-- Header -->
+            <div class="p-6 border-b border-white/5 bg-black/20">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-1">Score</div>
+                        <div id="score-display"
+                            class="text-3xl font-black bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 to-cyan-400">
+                            0</div>
+                    </div>
+                    <div class="flex flex-col items-end">
+                        <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-1">Série</div>
+                        <div class="flex items-center space-x-1">
+                            <span class="text-lg">🔥</span>
+                            <span id="streak-display" class="text-xl font-bold text-white">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="mt-4 relative h-2 bg-gray-800 rounded-full overflow-hidden">
+                    <div id="progress-bar"
+                        class="absolute top-0 left-0 h-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 shadow-[0_0_10px_rgba(236,72,153,0.5)] transition-all duration-500 ease-out"
+                        style="width: 0%"></div>
+                </div>
+                <div class="flex justify-between mt-2 text-[10px] font-medium text-gray-500">
+                    <span id="game-title-indicator">Mode Jeu</span>
+                    <span><span id="current-count" class="text-white">0</span> / <span
+                            id="total-count">...</span></span>
+                </div>
+            </div>
+
+            <!-- Question Area -->
+            <div
+                class="p-8 flex-grow flex flex-col items-center justify-center bg-gradient-to-b from-transparent to-black/20">
+
+                <!-- Flag Question -->
+                <div id="question-flag-container"
+                    class="hidden w-full aspect-[4/3] max-h-60 rounded-xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-gray-800/50 mb-6 relative group">
+                    <div class="absolute inset-0 flex items-center justify-center text-gray-600 animate-pulse"
+                        id="flag-loader">
+                        <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15">
+                            </path>
+                        </svg>
+                    </div>
+                    <img id="flag-img" src=""
+                        class="absolute inset-0 w-full h-full object-contain transition-all duration-500 opacity-0 transform scale-95 group-hover:scale-100"
+                        alt="Flag">
+                </div>
+
+                <!-- Text Question (Capital) -->
+                <div id="question-text-container" class="hidden w-full text-center mb-8">
+                    <p class="text-sm text-gray-400 uppercase tracking-widest font-bold mb-4">Quelle est la capitale de
+                    </p>
+                    <h3 id="country-name-display"
+                        class="text-4xl md:text-5xl font-black text-white drop-shadow-lg leading-tight">France</h3>
+                </div>
+
+                <!-- Toggle Fast Mode -->
+                <label
+                    class="flex items-center space-x-3 cursor-pointer group mt-2 opacity-50 hover:opacity-100 transition-opacity">
+                    <input type="checkbox" id="fast-mode-toggle" class="peer sr-only">
+                    <div
+                        class="w-10 h-6 bg-gray-700 peer-checked:bg-gradient-to-r peer-checked:from-emerald-500 peer-checked:to-cyan-500 rounded-full relative transition-all duration-300 shadow-inner">
+                        <div
+                            class="absolute left-1 top-1 w-4 h-4 bg-white rounded-full transition-all duration-300 peer-checked:translate-x-4 shadow">
+                        </div>
+                    </div>
+                    <span class="text-xs font-bold text-gray-300">MODE FLASH</span>
+                </label>
+            </div>
+
+            <!-- Options Grid -->
+            <div id="options-grid"
+                class="p-6 bg-black/40 backdrop-blur-md grid grid-cols-1 md:grid-cols-2 gap-3 border-t border-white/5">
+                <!-- Options injected by JS -->
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Game Over Screen -->
+    <div id="game-over-screen"
+        class="fixed inset-0 z-[60] hidden flex flex-col items-center justify-center p-4 bg-black/90 backdrop-blur-xl animate__animated animate__fadeIn">
+        <div
+            class="glass-strong p-10 rounded-[2.5rem] max-w-sm w-full text-center relative overflow-hidden ring-1 ring-white/10">
+            <!-- Decorative blobs -->
+            <div class="absolute -top-20 -right-20 w-60 h-60 bg-purple-500/30 rounded-full blur-[80px]"></div>
+            <div class="absolute -bottom-20 -left-20 w-60 h-60 bg-emerald-500/30 rounded-full blur-[80px]"></div>
+
+            <h2
+                class="relative text-5xl font-black mb-2 bg-clip-text text-transparent bg-gradient-to-br from-white to-gray-400 tracking-tight">
+                TERMINÉ</h2>
+            <p class="relative text-gray-400 mb-10 font-medium">Incroyable performance !</p>
+
+            <div class="grid grid-cols-2 gap-4 mb-10 relative">
+                <div class="bg-white/5 border border-white/10 p-5 rounded-2xl flex flex-col items-center">
+                    <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-1">Score</div>
+                    <div id="final-score" class="text-4xl font-black text-white">0</div>
+                </div>
+                <div class="bg-white/5 border border-white/10 p-5 rounded-2xl flex flex-col items-center">
+                    <div class="text-[10px] text-gray-400 uppercase tracking-widest font-bold mb-1">Max Streak</div>
+                    <div id="final-streak" class="text-4xl font-black text-yellow-400 drop-shadow-md">0</div>
+                </div>
+            </div>
+
+            <div class="space-y-3 relative">
+                <button
+                    class="w-full py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-600 font-bold text-white shadow-lg shadow-cyan-500/25 hover:shadow-cyan-500/40 hover:scale-[1.02] active:scale-95 transition-all duration-200"
+                    onclick="app.restart()">
+                    Rejouer
+                </button>
+                <button
+                    class="w-full py-4 rounded-xl bg-white/5 text-gray-300 font-bold hover:bg-white/10 hover:text-white transition-all"
+                    onclick="app.showCategory('geo')">
+                    Changer de Jeu
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        window.onerror = function (message, source, lineno, colno, error) {
+            console.error(message, lineno);
+        };
+    </script>
+    <script type="module" src="src/main.js"></script>
+</body>
+
+</html>

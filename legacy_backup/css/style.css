@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap');
+
+/* --- THEME VARIABLES --- */
+:root {
+    /* Dark Theme (Default) */
+    --bg-primary: #0f172a;
+    --text-primary: #ffffff;
+    --text-secondary: #94a3b8;
+    --glass-bg: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-shadow: rgba(0, 0, 0, 0.2);
+    --card-bg-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    --mesh-opacity: 1;
+}
+
+html.theme-light {
+    /* Light Theme */
+    --bg-primary: #F8FAFC;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --glass-bg: rgba(255, 255, 255, 0.7);
+    --glass-border: rgba(203, 213, 225, 0.6);
+    --glass-shadow: rgba(148, 163, 184, 0.1);
+    --card-bg-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.5) 100%);
+    --mesh-opacity: 0.15;
+    /* Subtle mesh in light mode */
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    overscroll-behavior-y: none;
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* --- MESH GRADIENT BACKGROUND --- */
+.mesh-gradient {
+    background-color: var(--bg-primary);
+    background-image:
+        radial-gradient(at 0% 0%, hsla(253, 16%, 7%, 1) 0, transparent 50%),
+        radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%),
+        radial-gradient(at 0% 50%, hsla(339, 49%, 30%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 50%, hsla(339, 49%, 30%, 1) 0, transparent 50%),
+        radial-gradient(at 0% 100%, hsla(339, 49%, 30%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 100%, hsla(225, 39%, 30%, 1) 0, transparent 50%);
+    background-size: 150% 150%;
+    animation: gradientMove 20s ease infinite alternate;
+    opacity: var(--mesh-opacity);
+    transition: opacity 0.5s ease;
+}
+
+/* Light Mode Mesh Override */
+html.theme-light .mesh-gradient {
+    /* Use softer, lighter colors for light mode mesh */
+    background-image:
+        radial-gradient(at 0% 0%, hsla(210, 100%, 90%, 1) 0, transparent 50%),
+        radial-gradient(at 50% 0%, hsla(220, 100%, 85%, 1) 0, transparent 50%),
+        radial-gradient(at 100% 0%, hsla(250, 100%, 90%, 1) 0, transparent 50%);
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 0%;
+    }
+
+    100% {
+        background-position: 100% 100%;
+    }
+}
+
+/* --- GLASSMORPHISM --- */
+.glass {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.glass-strong {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 8px 32px 0 var(--glass-shadow);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.glass-card {
+    background: var(--card-bg-gradient);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 24px -1px var(--glass-shadow);
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+    border-color: var(--glass-border);
+    box-shadow: 0 20px 40px -5px var(--glass-shadow);
+}
+
+/* Button Glass Override for Light Mode visibility */
+.btn-glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-primary);
+}
+
+/* Text Colors */
+.text-gray-400,
+.text-gray-500 {
+    color: var(--text-secondary);
+}
+
+/* Smooth SVG fills */
+svg {
+    transition: fill 0.3s ease, stroke 0.3s ease;
+}
+
+/* --- UTILS --- */
+.text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Toggle Switch */
+#fast-mode-toggle:checked+div>div {
+    transform: translateX(1rem);
+}
+
+/* Animations */
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
